@@ -1,0 +1,23 @@
+﻿
+@using JustBlog.Models;
+@model ListViewModel
+@{
+}
+
+<h2>@ViewBag.Title</h2>
+<div id="content">
+
+    @Html.Partial("_pager")
+    @if (Model.posts.Count > 0)
+    {
+        foreach (var post in Model.posts)
+        {
+            @Html.Partial("_PostTemplate", post);
+        }
+    }
+    else
+    {
+        <p>no post found</p>
+    }
+
+</div>

@@ -1,0 +1,18 @@
+﻿@model JustBlog.Models.ListViewModel
+
+@{ 
+    var currentPage = ViewContext.RequestContext.HttpContext.Request["page"]!=null?Convert.ToInt32(ViewContext.RequestContext.HttpContext.Request["page"]):1;
+    var pageSize = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["pageSize"].ToString());
+
+    var totalPage = Math.Ceiling((double)Model.TotalPost/pageSize);
+    
+    var previous = string.Format($"?page={currentPage-1}");
+    var next = string.Format($"?page={currentPage+1}");
+}
+@if (currentPage >1 || currentPage<totalPage)
+{
+    <div class="pager">
+        <a href="@previous" style="visibility:@(currentPage>1?"visible":"collapse")" class="previous" >Previous</a>
+        <a href="@next" style="visibility:@(currentPage<totalPage?"visible":"collapse")" class="next">Next</a>
+    </div>
+}

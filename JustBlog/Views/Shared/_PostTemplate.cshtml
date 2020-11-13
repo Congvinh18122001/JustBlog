@@ -1,0 +1,56 @@
+﻿
+@using JustBlog.core.Objects
+@model Post
+        <div class="post">
+            <div class="post-meta">
+                <div class="row">
+
+                    <!--Heading-->
+                    <div class="post-title">
+                        <h2> <a href="@Url.Action("Post", "Blog", new { id = Model.Id })">@Model.Title</a>  </h2>
+
+</div>
+
+                </div>
+
+                <div class="row">
+
+                    <!--Category-->
+                    <div class="post-category">
+                        <span>Category: </span> <a href="@Url.Action("Category","Blog",new {id=Model.CategoryId })">@Model.Category.Name</a> 
+                    </div>
+
+                    <!--Tags-->
+                    <div class="post-tags">
+                        <span>Tags: </span>
+                        @foreach (var item in Model.Tags)
+                        {
+                            <a href="@Url.Action("Tag","Blog",new { id =item.Id})">@item.Name</a>
+                        }
+                    </div>
+
+                    <!--Posted date-->
+                    <div class="posted-date">
+                        @String.Format("{0:dddd, MMMM d, yyyy}", Model.PostedOn);
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--Short Description-->
+            <div class="post-body">
+                @Html.Raw(Model.ShortDescription)
+            </div>
+
+            <div class="post-foot">
+                @Html.ActionLink("continue...", "Post", "Blog",
+                    new
+                    {
+                       id=Model.Id
+                    },
+                    new {}
+                )
+            </div>
+        </div>
+

@@ -1,0 +1,48 @@
+﻿@model JustBlog.Models.WidgetViewModel
+
+    <div id="sidebars">
+        <div class="sidebar">
+            <h2>Categories : </h2>
+            @if (Model.Categories.Count() > 0)
+            {
+                <ul>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <li>@Html.ActionLink(item.Name, "Category", "Blog", new { id = item.Id })</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No  Categories found</p>
+            }
+        </div>
+        <div class="tags sidebar">
+            <h2>Tags : </h2>
+            @if (Model.Tags.Count() > 0)
+            {
+                foreach (var item in Model.Tags)
+                {
+                    @Html.ActionLink(item.Name, "Tag", "Blog", new { id = item.Id })
+                }
+            }
+            else
+            {
+                <p>No  Tags found</p>
+            }
+            <h2>Lastest Posts : </h2>
+            @if (Model.LastestPosts.Count() > 0)
+            {
+                <ul>
+                    @foreach (var item in Model.LastestPosts)
+                    {
+                    <li> <a href="@Url.Action("Post", "Blog", new { id = item.Id })">@item.Title</a></li>
+                    }
+                </ul>
+            }
+            else
+            {
+        <p>No  LastestPosts found</p>
+            }
+        </div>
+    </div>

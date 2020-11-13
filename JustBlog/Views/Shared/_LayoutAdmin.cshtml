@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            Admin Page
+        </header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Just Bolog</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="">Home</a></li>
+                    <li><a href="@Url.Action("Index","Categories1")">Category Management</a></li>
+                    <li><a href="@Url.Action("Index","Tags1")">Tags Management</a></li>
+                    <li><a href="@Url.Action("Index","Posts")">Posts Managements</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial");
+            </div>
+        </nav>
+        <main>
+            @RenderBody()
+        </main>
+        <footer>
+            Copyright ï¿½ @DateTime.Now.Year JustBlog All Rights Reserved
+        </footer>
+    </div>
+    @RenderSection("scripts",required:false);
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿@model JustBlog.core.Objects.Post
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div id="content">
+    <div class="post">
+        <div class="post-category">
+            <div class="row">
+                <div class="post-title">
+                    <h1>@Model.Title</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="post-category">
+                    <span>Category: </span> <a href="@Url.Action("Category","Blog",new {id=Model.CategoryId })">@Model.Category.Name</a>
+                </div>
+                <div class="post-tags">
+                    <span>Tags : </span>
+                    @foreach (var item in Model.Tags)
+                    {
+                        <a href="@Url.Action("Tag","Blog",new { id =item.Id})">@item.Name</a>
+                    }
+                </div>
+                <div class="posted-date">
+                    @string.Format("{0:dddd, MMMM d, yyyy}", Model.PostedOn);
+                </div>
+
+            </div>
+
+        </div>
+        <div class="post-body">
+            @Html.Raw(Model.Description)
+        </div>
+        <div>@Html.ActionLink("Back","Posts","Blog")</div>
+    </div>
+
+</div>
+
